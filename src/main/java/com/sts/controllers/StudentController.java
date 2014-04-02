@@ -54,6 +54,45 @@ public class StudentController {
 		}
 		return model;
 	}
-	
-	
+	@RequestMapping(value = "/addnewstudent", method = RequestMethod.GET)
+	public ModelAndView addnewstudent(ModelAndView model,
+			HttpServletRequest request) {
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		model.setViewName("/school_admin/addnewstudent");
+		DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+
+		model.addObject("date", formatter.format(new Date()));
+
+		model.addObject("login_name", auth.getName());
+		model.addObject("current_page", "students_list");
+		/*
+		 * To check which role use is logged in
+		 */
+		if (request.isUserInRole("ROLE_SCHOOLADMIN")) {
+			// System.out.println("School admin has logged in .....");
+			studentService.addStudent();
+		}
+		return model;
+	}
+	@RequestMapping(value = "/viewstudent", method = RequestMethod.GET)
+	public ModelAndView viewstudent(ModelAndView model,HttpServletRequest request) {
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		model.setViewName("/school_admin/viewstudent");
+		DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+
+		model.addObject("date", formatter.format(new Date()));
+
+		model.addObject("login_name", auth.getName());
+		model.addObject("current_page", "students_list");
+		/*
+		 * To check which role use is logged in
+		 */
+		if (request.isUserInRole("ROLE_SCHOOLADMIN")) {
+			// System.out.println("School admin has logged in .....");
+			studentService.addStudent();
+		}
+		return model;
+	}
 }

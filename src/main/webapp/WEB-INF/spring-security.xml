@@ -1,0 +1,57 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/security
+       http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<global-method-security secured-annotations="enabled" />
+	<http auto-config="true">
+		<intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+
+
+		<intercept-url pattern="/school_admin/*" access="ROLE_SCHOOLADMIN" />
+		<form-login login-page="/login" authentication-failure-url="/loginfailed"
+
+			authentication-success-handler-ref="myAuthenticationSuccessHandler" />
+
+		<logout invalidate-session="true" logout-success-url="/logout" />
+		<access-denied-handler error-page="/404" />
+
+		<session-management invalid-session-url="/logout.html">
+			
+		</session-management>
+
+
+	</http>
+
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider ref="customAuthenticationProvider" />
+
+	</authentication-manager>
+	<beans:bean id="customAuthenticationProvider" class="com.main.sts.login.CustomAuthenticationProvider">
+		<beans:property name="loginService" ref="loginService"></beans:property>
+
+	</beans:bean>
+	<beans:bean id="myAuthenticationSuccessHandler" class="com.main.sts.login.MyAuthenticationSuccessHandler">
+		<beans:property name="loginService" ref="loginService"></beans:property>
+
+	</beans:bean>
+	<beans:bean id="loginService" class="com.main.sts.login.LoginService">
+		<beans:property name="mongoTemplate" ref="mongoTemplate"></beans:property>
+	</beans:bean>
+
+	<!-- Factory bean that creates the Mongo instance -->
+	<beans:bean id="mongo"
+		class="org.springframework.data.mongodb.core.MongoFactoryBean">
+		<beans:property name="host" value="localhost" />
+	</beans:bean>
+
+	<!-- MongoTemplate for connecting and quering the documents in the database -->
+	<beans:bean id="mongoTemplate"
+		class="org.springframework.data.mongodb.core.MongoTemplate" scope="singleton">
+		<beans:constructor-arg name="mongo" ref="mongo" />
+		<beans:constructor-arg name="databaseName"
+			value="sts" />
+	</beans:bean>
+</beans:beans>

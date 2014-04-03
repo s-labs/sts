@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 
-import com.sts.service.StudentService;
+import com.sts.service.StudentRfidService;
 
 @Controller
 @RequestMapping(value = "/school_admin")
@@ -29,7 +29,7 @@ public class StudentController {
 	private static final Logger logger = Logger.getLogger(StudentController.class);
 	
 	@Autowired
-	StudentService studentService;
+	StudentRfidService studentService;
 	
 	
 	
@@ -50,7 +50,7 @@ public class StudentController {
 		 */
 		if (request.isUserInRole("ROLE_SCHOOLADMIN")) {
 			// System.out.println("School admin has logged in .....");
-			studentService.addStudent();
+			//studentService.addStudent();
 		}
 		return model;
 	}
@@ -71,7 +71,7 @@ public class StudentController {
 		 */
 		if (request.isUserInRole("ROLE_SCHOOLADMIN")) {
 			// System.out.println("School admin has logged in .....");
-			studentService.addStudent();
+			//studentService.addStudent();
 		}
 		return model;
 	}
@@ -91,7 +91,7 @@ public class StudentController {
 		 */
 		if (request.isUserInRole("ROLE_SCHOOLADMIN")) {
 			// System.out.println("School admin has logged in .....");
-			studentService.addStudent();
+			//studentService.addStudent();
 		}
 		return model;
 	}

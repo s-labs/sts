@@ -24,7 +24,7 @@ public class StudentServiceOld {
 		 System.out.println("we are studentservie store()");
 		 if (!mongoTemplate.collectionExists(StudentEntity.class)) {
 	            mongoTemplate.createCollection(StudentEntity.class);
-	        }      
+	        }  
 	        student.setId(UUID.randomUUID().toString());
 	        mongoTemplate.insert(student, COLLECTION_NAME);
 		

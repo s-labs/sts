@@ -1,7 +1,9 @@
 package com.sts.service;
 
-public interface StudentService {
+import com.sts.model.StudentRfidEntity;
+
+public interface StudentRfidService {
 	
-	boolean addStudent();
+	public boolean storeStudent(StudentRfidEntity studentRfidEntity);
 
 }

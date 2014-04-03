@@ -302,16 +302,24 @@
 									<div class="form-group">
 										<label class="col-md-3 control-label">RFID Number <span class="required">*</span></label>
 										<div class="col-md-9">
+<<<<<<< HEAD
 											<input type="text" name="student_name" class="form-control required">
+=======
+											<input type="text" name="rfidNumber" class="form-control required">
+>>>>>>> 549d991381da917e205d9493779754c26d33a6b7
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="col-md-3 control-label">RFID TYPE <span class="required">*</span></label>
 										<div class="col-md-9">
+<<<<<<< HEAD
 											<select class="form-control" id="student_rfid_type">
 												<option value="Student" selected="selected" name="student_rfid">Student</option>
 												
 											</select>
+=======
+											<input type="text" name="rfidType" value="student" class="form-control required">
+>>>>>>> 549d991381da917e205d9493779754c26d33a6b7
 										</div>
 									</div>
 								
